@@ -37,7 +37,7 @@ int main(int argc, char **argv)
     struct timeval start_time;
     struct timeval end_time;
     int power = 1;
-    while(power <= (1024))
+    while(power <= (1024/sizeof(MPI_INT)))
     {
         long elap = 0;
         transfer_count = 0;
@@ -80,9 +80,9 @@ int main(int argc, char **argv)
             }
             long temp = calTime(end_time, start_time);
             elap += temp;
-            power = power * 2;
+           
         }
-
+        power = power * 2;
         printf("It takes %ld ms to transfer %d bytes back and forth %d times\n", elap, transfer_num * power, transfer_LIMIT / 2);
         long throughput = (long)4 * transfer_num * power * transfer_LIMIT * 1000 / elap;
         printf("Throughput = %ld byte/s\n", throughput);
