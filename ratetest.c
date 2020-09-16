@@ -44,13 +44,15 @@ int main(int argc, char **argv)
         }
 
         int numbers[transfer_num];
+        if (transfer_count == 0)
+        {
+            gettimeofday(&start_time, NULL);
+        }
+        
         while (transfer_count < transfer_LIMIT)
         {
 
-            if (transfer_count == 0)
-            {
-                gettimeofday(&start_time, NULL);
-            }
+            
             if (world_rank == transfer_count % 2)
             {
                 // Increment the ping pong count before you send it
@@ -73,11 +75,13 @@ int main(int argc, char **argv)
                 // printf("node %d received %d byte(s) from %d\n",
                 //     world_rank, transfer_num, partner_rank);
             }
-            if (transfer_count == 100)
-            {
-                gettimeofday(&end_time, NULL);
-            }
+            
         }
+        if (transfer_count == 100)
+        {
+            gettimeofday(&end_time, NULL);
+        }
+        
         long elap = calTime(end_time, start_time);
         printf("It takes %ld ms to transfer %d bytes back and forth %d times\n", elap, transfer_num, transfer_LIMIT / 2);
         if(elap != 0){
