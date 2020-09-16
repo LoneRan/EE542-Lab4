@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
-
+#include <math.h>
 double calTime(struct timeval time1, struct timeval time2)
 {
     long elap = (time1.tv_sec - time2.tv_sec) * 1000000 + time1.tv_usec - time2.tv_usec;
@@ -36,45 +36,50 @@ int main(int argc, char **argv)
 
     struct timeval start_time;
     struct timeval end_time;
-    while (transfer_count < transfer_LIMIT)
+    for (int i = 1; i < 11; i++)
     {
-        if (transfer_count == 0)
+        transfer_count = 0;
+        while (transfer_count < transfer_LIMIT)
         {
-            gettimeofday(&start_time, NULL);
-        }
-        if (world_rank == transfer_count % 2)
-        {
-            // Increment the ping pong count before you send it
-            transfer_count++;
-            MPI_Send(&transfer_count, 1, MPI_INT, partner_rank, 0, MPI_COMM_WORLD);
-            for (int i = 0; i < 255; i++)
+            if (transfer_count == 0)
             {
-                MPI_Send(&numbers, transfer_num, MPI_INT, partner_rank, 0, MPI_COMM_WORLD);
+                gettimeofday(&start_time, NULL);
             }
+            if (world_rank == transfer_count % 2)
+            {
+                // Increment the ping pong count before you send it
+                transfer_count++;
+                MPI_Send(&transfer_count, 1, MPI_INT, partner_rank, 0, MPI_COMM_WORLD);
+                for (int j = 0; j < pow(2, i); j++)
+                {
+                    MPI_Send(&numbers, transfer_num, MPI_INT, partner_rank, 0, MPI_COMM_WORLD);
+                }
 
-            printf("node %d sent %d byte(s) to %d\n",
-                   world_rank, transfer_num, partner_rank);
-        }
-        else
-        {
-            MPI_Recv(&transfer_count, 1, MPI_INT, partner_rank, 0, MPI_COMM_WORLD,
-                     MPI_STATUS_IGNORE);
-            for (int i = 0; i < 255; i++)
-            {
-                MPI_Recv(&numbers, transfer_num, MPI_INT, partner_rank, 0, MPI_COMM_WORLD,
-                         MPI_STATUS_IGNORE);
+                // printf("node %d sent %d byte(s) to %d\n",
+                //     world_rank, transfer_num, partner_rank);
             }
-            printf("node %d received %d byte(s) from %d\n",
-                   world_rank, transfer_num, partner_rank);
+            else
+            {
+                MPI_Recv(&transfer_count, 1, MPI_INT, partner_rank, 0, MPI_COMM_WORLD,
+                         MPI_STATUS_IGNORE);
+                for (int j = 0; j < pow(2, i); j++)
+                {
+                    MPI_Recv(&numbers, transfer_num, MPI_INT, partner_rank, 0, MPI_COMM_WORLD,
+                             MPI_STATUS_IGNORE);
+                }
+                // printf("node %d received %d byte(s) from %d\n",
+                //     world_rank, transfer_num, partner_rank);
+            }
+            if (transfer_count == 100)
+            {
+                gettimeofday(&end_time, NULL);
+            }
         }
-        if (transfer_count == 100)
-        {
-            gettimeofday(&end_time, NULL);
-        }
+        long elap = calTime(end_time, start_time);
+        printf("It takes %ld ms to transfer %d bytes back and forth 500times\n", elap, transfer_num);
+        //long throughput = (long)transfer_num * 500 / (2 * elap / 1000);
+        //printf("Throughput = % byte/s\n", throughput);
     }
-    long elap = calTime(end_time, start_time);
-    printf("It takes %ld ms to transfer %d bytes back and forth 500times\n", elap, transfer_num);
-    //long throughput = (long)transfer_num * 500 / (2 * elap / 1000);
-    //printf("Throughput = % byte/s\n", throughput);
+
     MPI_Finalize();
 }
