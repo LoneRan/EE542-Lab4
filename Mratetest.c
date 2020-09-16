@@ -37,7 +37,7 @@ int main(int argc, char **argv)
     struct timeval start_time;
     struct timeval end_time;
     int power = 1;
-    while(power < (1024/sizeof(MPI_INT))
+    while(power < (1024/sizeof(MPI_INT)))
     {
         long elap = 0;
         transfer_count = 0;
