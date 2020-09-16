@@ -49,7 +49,7 @@ int main(int argc, char **argv)
             printf("node %d sent %d byte(s) to %d\n",
                    world_rank, transfer_num, partner_rank);
         }
-        else if (world_rank - 1 == transfer_count % 2)
+        else 
         {
             MPI_Recv(&transfer_count, transfer_num, MPI_BYTE, partner_rank, 0, MPI_COMM_WORLD,
                      MPI_STATUS_IGNORE);
