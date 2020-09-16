@@ -3,8 +3,8 @@ MPICC?=mpicc
 
 all: ${EXECS}
 
-Mratetest: Mratetest.c
-	${MPICC} -o Mratetest Mratetest.c
+ratetest: ratetest.c
+	${MPICC} -o ratetest ratetest.c
 
 clean:
 	rm -f ${EXECS}
