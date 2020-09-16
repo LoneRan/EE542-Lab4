@@ -1,7 +1,7 @@
 EXECS=ratetest 
 MPICC?=mpicc
 
-all: ${EXECS}
+all: ratetest Mratetest
 
 ratetest: ratetest.c
 	${MPICC} -o ratetest ratetest.c
