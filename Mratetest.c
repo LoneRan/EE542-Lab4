@@ -11,7 +11,7 @@ double calTime(struct timeval time1, struct timeval time2)
 }
 int main(int argc, char **argv)
 {
-    const int transfer_LIMIT = 1000;
+    const int transfer_LIMIT = 100;
 
     // Initialize the MPI environment
     MPI_Init(NULL, NULL);
@@ -38,20 +38,20 @@ int main(int argc, char **argv)
     struct timeval end_time;
     for (int i = 1; i < 11; i++)
     {
+        long elap = 0;
         transfer_count = 0;
         int power = 1;
         for (int index = 1; index <= i; index++)
         {
             power = power * 2;
         }
-        if (transfer_count == 0)
-        {
-            gettimeofday(&start_time, NULL);
-        }
         while (transfer_count < transfer_LIMIT)
         {
 
-            
+            if (transfer_count == 0)
+            {
+                gettimeofday(&start_time, NULL);
+            }
             if (world_rank == transfer_count % 2)
             {
                 // Increment the ping pong count before you send it
@@ -77,14 +77,14 @@ int main(int argc, char **argv)
                 // printf("node %d received %d byte(s) from %d\n",
                 //     world_rank, transfer_num, partner_rank);
             }
-            
+            if (transfer_count == 100)
+            {
+                gettimeofday(&end_time, NULL);
+            }
+            long temp = calTime(end_time, start_time);
+            elap += temp;
         }
-        if (transfer_count == 100)
-        {
-            gettimeofday(&end_time, NULL);
-        }
-        
-        long elap = calTime(end_time, start_time);
+
         printf("It takes %ld ms to transfer %d bytes back and forth %d times\n", elap, transfer_num * power, transfer_LIMIT / 2);
         long throughput = (long)4 * transfer_num * power * transfer_LIMIT * 1000 / elap;
         printf("Throughput = %ld byte/s\n", throughput);
