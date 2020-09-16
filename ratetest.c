@@ -30,20 +30,20 @@ int main(int argc, char **argv)
 
     int transfer_count = 0;
 
-    int transfer_num = 1048576;
-    int numbers[transfer_num];
     int partner_rank = (world_rank + 1) % 2;
 
     struct timeval start_time;
     struct timeval end_time;
-    for (int i = 1; i < 11; i++)
+    for (int i = 1; i < 21; i++)
     {
         transfer_count = 0;
-        int power = 1;
+        int transfer_num = 1;
         for (int index = 1; index <= i; index++)
         {
-            power = power * 2;
+            transfer_num = transfer_num * 2;
         }
+
+        int numbers[transfer_num];
         while (transfer_count < transfer_LIMIT)
         {
 
@@ -56,10 +56,8 @@ int main(int argc, char **argv)
                 // Increment the ping pong count before you send it
                 transfer_count++;
                 MPI_Send(&transfer_count, 1, MPI_INT, partner_rank, 0, MPI_COMM_WORLD);
-                for (int j = 0; j < power; j++)
-                {
-                    MPI_Send(&numbers, transfer_num, MPI_INT, partner_rank, 0, MPI_COMM_WORLD);
-                }
+
+                MPI_Send(&numbers, transfer_num, MPI_INT, partner_rank, 0, MPI_COMM_WORLD);
 
                 // printf("node %d sent %d byte(s) to %d\n",
                 //     world_rank, transfer_num, partner_rank);
@@ -68,11 +66,10 @@ int main(int argc, char **argv)
             {
                 MPI_Recv(&transfer_count, 1, MPI_INT, partner_rank, 0, MPI_COMM_WORLD,
                          MPI_STATUS_IGNORE);
-                for (int j = 0; j < power; j++)
-                {
-                    MPI_Recv(&numbers, transfer_num, MPI_INT, partner_rank, 0, MPI_COMM_WORLD,
-                             MPI_STATUS_IGNORE);
-                }
+
+                MPI_Recv(&numbers, transfer_num, MPI_INT, partner_rank, 0, MPI_COMM_WORLD,
+                         MPI_STATUS_IGNORE);
+
                 // printf("node %d received %d byte(s) from %d\n",
                 //     world_rank, transfer_num, partner_rank);
             }
@@ -82,7 +79,7 @@ int main(int argc, char **argv)
             }
         }
         long elap = calTime(end_time, start_time);
-        printf("It takes %ld ms to transfer %d bytes back and forth 500times\n", elap, transfer_num * power);
+        printf("It takes %ld ms to transfer %d bytes back and forth 500times\n", elap, transfer_num);
         //long throughput = (long)transfer_num * 500 / (2 * elap / 1000);
         //printf("Throughput = % byte/s\n", throughput);
     }
