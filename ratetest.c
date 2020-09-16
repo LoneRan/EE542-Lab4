@@ -79,7 +79,7 @@ int main(int argc, char **argv)
             }
         }
         long elap = calTime(end_time, start_time);
-        printf("It takes %ld ms to transfer %d bytes back and forth 500times\n", elap, transfer_num);
+        printf("It takes %ld ms to transfer %d bytes back and forth %d times\n", elap, transfer_num * power, transfer_LIMIT / 2);
         //long throughput = (long)transfer_num * 500 / (2 * elap / 1000);
         //printf("Throughput = % byte/s\n", throughput);
     }
