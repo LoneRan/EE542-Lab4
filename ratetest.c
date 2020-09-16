@@ -82,7 +82,7 @@ int main(int argc, char **argv)
         }
 
         printf("It takes %ld ms to transfer %d bytes back and forth %d times\n", elap, transfer_num, transfer_LIMIT / 2);
-        if(elap != 0){
+        if(elap > 0){
             
             long throughput = (long)4 * transfer_num * transfer_LIMIT * 1000 / elap;
             printf("Throughput = %ld bytes/s\n", throughput);
