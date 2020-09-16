@@ -29,7 +29,7 @@ int main(int argc, char **argv)
     }
 
     int transfer_count = 0;
-    int transfer_num = 1024;
+    int transfer_num = 1;
     int partner_rank = (world_rank + 1) % 2;
 
     struct timeval start_time;
