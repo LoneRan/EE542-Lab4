@@ -82,10 +82,11 @@ int main(int argc, char **argv)
             elap += temp;
            
         }
-        power = power * 2;
+        
         printf("It takes %ld ms to transfer %d bytes back and forth %d times\n", elap, transfer_num * power, transfer_LIMIT / 2);
         long throughput = (long)4 * transfer_num * power * transfer_LIMIT * 1000 / elap;
         printf("Throughput = %ld byte/s\n", throughput);
+        power = power * 2;
     }
 
     MPI_Finalize();
