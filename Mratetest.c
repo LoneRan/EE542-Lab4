@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
-#include <math.h>
+
 double calTime(struct timeval time1, struct timeval time2)
 {
     long elap = (time1.tv_sec - time2.tv_sec) * 1000000 + time1.tv_usec - time2.tv_usec;
@@ -39,8 +39,14 @@ int main(int argc, char **argv)
     for (int i = 1; i < 11; i++)
     {
         transfer_count = 0;
+        int power = 1;
+        for (int index = 1; index <= i; index++)
+        {
+            power = power * 2;
+        }
         while (transfer_count < transfer_LIMIT)
         {
+
             if (transfer_count == 0)
             {
                 gettimeofday(&start_time, NULL);
@@ -50,7 +56,7 @@ int main(int argc, char **argv)
                 // Increment the ping pong count before you send it
                 transfer_count++;
                 MPI_Send(&transfer_count, 1, MPI_INT, partner_rank, 0, MPI_COMM_WORLD);
-                for (int j = 0; j < pow(2, i); j++)
+                for (int j = 0; j < power; j++)
                 {
                     MPI_Send(&numbers, transfer_num, MPI_INT, partner_rank, 0, MPI_COMM_WORLD);
                 }
@@ -62,7 +68,7 @@ int main(int argc, char **argv)
             {
                 MPI_Recv(&transfer_count, 1, MPI_INT, partner_rank, 0, MPI_COMM_WORLD,
                          MPI_STATUS_IGNORE);
-                for (int j = 0; j < pow(2, i); j++)
+                for (int j = 0; j < power; j++)
                 {
                     MPI_Recv(&numbers, transfer_num, MPI_INT, partner_rank, 0, MPI_COMM_WORLD,
                              MPI_STATUS_IGNORE);
@@ -76,7 +82,7 @@ int main(int argc, char **argv)
             }
         }
         long elap = calTime(end_time, start_time);
-        printf("It takes %ld ms to transfer %d bytes back and forth 500times\n", elap, transfer_num);
+        printf("It takes %ld ms to transfer %d bytes back and forth %d times\n", elap, transfer_num * power, transfer_LIMIT / 2);
         //long throughput = (long)transfer_num * 500 / (2 * elap / 1000);
         //printf("Throughput = % byte/s\n", throughput);
     }
