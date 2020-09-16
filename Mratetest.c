@@ -37,18 +37,18 @@ int main(int argc, char **argv)
     struct timeval start_time;
     struct timeval end_time;
     int power = 1;
-    while(power <= (1024/sizeof(MPI_INT)))
+    while (power <= (1024 / sizeof(MPI_INT)))
     {
         long elap = 0;
         transfer_count = 0;
 
+        if (transfer_count == 0)
+        {
+            gettimeofday(&start_time, NULL);
+        }
         while (transfer_count < transfer_LIMIT)
         {
 
-            if (transfer_count == 0)
-            {
-                gettimeofday(&start_time, NULL);
-            }
             if (world_rank == transfer_count % 2)
             {
                 // Increment the ping pong count before you send it
@@ -78,11 +78,9 @@ int main(int argc, char **argv)
             {
                 gettimeofday(&end_time, NULL);
             }
-            long temp = calTime(end_time, start_time);
-            elap += temp;
-           
         }
-        
+        elap = calTime(end_time, start_time);
+
         printf("It takes %ld ms to transfer %d bytes back and forth %d times\n", elap, transfer_num * power, transfer_LIMIT / 2);
         long throughput = (long)4 * transfer_num * power * transfer_LIMIT * 1000 / elap;
         printf("Throughput = %ld byte/s\n", throughput);
