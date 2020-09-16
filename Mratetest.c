@@ -11,7 +11,7 @@ double calTime(struct timeval time1, struct timeval time2)
 }
 int main(int argc, char **argv)
 {
-    const int transfer_LIMIT = 100;
+    const int transfer_LIMIT = 1000;
 
     // Initialize the MPI environment
     MPI_Init(NULL, NULL);
