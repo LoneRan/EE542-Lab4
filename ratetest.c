@@ -11,7 +11,7 @@ double calTime(struct timeval time1, struct timeval time2)
 }
 int main(int argc, char **argv)
 {
-    const int transfer_LIMIT = 1000;
+    const int transfer_LIMIT = 100;
 
     // Initialize the MPI environment
     MPI_Init(NULL, NULL);
@@ -29,9 +29,9 @@ int main(int argc, char **argv)
     }
 
     int transfer_count = 0;
-    int transfer_num = 1;
+    int transfer_num = 1024;
     int partner_rank = (world_rank + 1) % 2;
-    int ifRecv[2] = {1, 0};
+
     struct timeval start_time;
     struct timeval end_time;
     while (transfer_count < transfer_LIMIT)
@@ -40,20 +40,18 @@ int main(int argc, char **argv)
         {
             gettimeofday(&start_time, NULL);
         }
-        if (world_rank == transfer_count % 2  && ifRecv[world_rank] == 1)
+        if (world_rank == transfer_count %)
         {
             // Increment the ping pong count before you send it
             transfer_count++;
             MPI_Send(&transfer_count, transfer_num, MPI_BYTE, partner_rank, 0, MPI_COMM_WORLD);
-            ifRecv[world_rank] = 0;
             printf("node %d sent %d byte(s) to %d\n",
                    world_rank, transfer_num, partner_rank);
         }
-        else 
+        else
         {
             MPI_Recv(&transfer_count, transfer_num, MPI_BYTE, partner_rank, 0, MPI_COMM_WORLD,
                      MPI_STATUS_IGNORE);
-            ifRecv[world_rank] = 1;
             printf("node %d received %d byte(s) from %d\n",
                    world_rank, transfer_num, partner_rank);
         }
