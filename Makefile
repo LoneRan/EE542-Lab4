@@ -9,4 +9,4 @@ Mratetest: Mratetest.c
 	${MPICC} -o Mratetest Mratetest.c
 
 clean:
-	rm -f ${EXECS}
+	rm -f ratetest Mratetest
