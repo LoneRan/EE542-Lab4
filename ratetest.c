@@ -40,7 +40,7 @@ int main(int argc, char **argv)
         {
             gettimeofday(&start_time, NULL);
         }
-        if (world_rank == transfer_count % 2 )
+        if (world_rank == transfer_count % 2  && ifRecv[world_rank] == 1)
         {
             // Increment the ping pong count before you send it
             transfer_count++;
