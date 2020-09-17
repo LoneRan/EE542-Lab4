@@ -83,7 +83,7 @@ int main(int argc, char **argv)
         if (elap > 0)
         {
 
-            long throughput = (long)4 * transfer_num * transfer_LIMIT * 1000 / elap;
+            long throughput = sizeof(MPI_INT) * (long)transfer_num * transfer_LIMIT * 1000 / elap;
             printf("Throughput = %ld bytes/s\n", throughput);
         }
     }
