@@ -73,11 +73,9 @@ int main(int argc, char **argv)
                 // printf("node %d received %d byte(s) from %d\n",
                 //     world_rank, transfer_num, partner_rank);
             }
-            if (transfer_count == transfer_LIMIT)
-            {
-                gettimeofday(&end_time, NULL);
-            }
+            
         }
+         gettimeofday(&end_time, NULL);
         elap = calTime(end_time, start_time);
         printf("It takes %ld ms to transfer %d bytes back and forth %d times\n", elap, transfer_num, transfer_LIMIT / 2);
         if (elap > 0)
