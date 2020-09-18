@@ -3,10 +3,10 @@
 #include <stdlib.h>
 #include <sys/time.h>
 
-double calTime(struct timeval time1, struct timeval time2)
+long calTime(struct timeval time1, struct timeval time2)
 {
     long elap = (time1.tv_sec - time2.tv_sec) * 1000000 + time1.tv_usec - time2.tv_usec;
-    long res = elap / 1000;
+    long res = elap ;
     return res;
 }
 int main(int argc, char **argv)
@@ -29,12 +29,13 @@ int main(int argc, char **argv)
     }
 
     int transfer_count = 0;
-
+    size_t mem_size = 1024 * 1024 * 1024;
     int partner_rank = (world_rank + 1) % 2;
-
+    int *numbers;
+    malloc(numbers,mem_size);
     struct timeval start_time;
     struct timeval end_time;
-    for (int i = 1; i < 21; i++)
+    for (int i = 1; i < 28; i++)
     {
         transfer_count = 0;
         int transfer_num = 1;
@@ -43,7 +44,7 @@ int main(int argc, char **argv)
             transfer_num = transfer_num * 2;
         }
         long elap = 0;
-        int numbers[transfer_num];
+        //int numbers[transfer_num];
         if (transfer_count == 0)
         {
             gettimeofday(&start_time, NULL);
@@ -77,14 +78,15 @@ int main(int argc, char **argv)
         }
          gettimeofday(&end_time, NULL);
         elap = calTime(end_time, start_time);
-        printf("It takes %ld ms to transfer %d MPI_INTs back and forth %d times\n", elap, transfer_num, transfer_LIMIT / 2);
+        printf("It takes %ld us to transfer %d MPI_INTs back and forth %d times\n", elap, transfer_num, transfer_LIMIT / 2);
         if (elap > 0)
         {
 
-            long throughput = sizeof(MPI_INT) * (long)transfer_num * 1000 / elap;
+            long throughput = sizeof(MPI_INT) * (long)transfer_num * 1000000 / elap;
             printf("Throughput = %ld bytes/s\n", throughput);
         }
     }
+    free(numbers);
 
     MPI_Finalize();
 }
