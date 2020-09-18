@@ -12,4 +12,4 @@ module load openmpi/4.0.2
 module load pmix
 
 mpirun -n 2 ratetest
-mpirun -n 2 Mratetest
+
