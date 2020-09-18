@@ -77,11 +77,11 @@ int main(int argc, char **argv)
         }
          gettimeofday(&end_time, NULL);
         elap = calTime(end_time, start_time);
-        printf("It takes %ld ms to transfer %d bytes back and forth %d times\n", elap, transfer_num, transfer_LIMIT / 2);
+        printf("It takes %ld ms to transfer %d MPI_INTs back and forth %d times\n", elap, transfer_num, transfer_LIMIT / 2);
         if (elap > 0)
         {
 
-            long throughput = sizeof(MPI_INT) * (long)transfer_num * transfer_LIMIT * 500 / elap;
+            long throughput = sizeof(MPI_INT) * (long)transfer_num * 1000 / elap;
             printf("Throughput = %ld bytes/s\n", throughput);
         }
     }
