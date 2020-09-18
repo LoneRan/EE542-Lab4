@@ -11,7 +11,7 @@ double calTime(struct timeval time1, struct timeval time2)
 }
 int main(int argc, char **argv)
 {
-    const int transfer_LIMIT = 2000;
+    const int transfer_LIMIT = 1000;
 
     // Initialize the MPI environment
     MPI_Init(NULL, NULL);
@@ -81,7 +81,7 @@ int main(int argc, char **argv)
         if (elap > 0)
         {
 
-            long throughput = sizeof(MPI_INT) * (long)transfer_num * transfer_LIMIT * 1000 / elap;
+            long throughput = sizeof(MPI_INT) * (long)transfer_num * transfer_LIMIT * 500 / elap;
             printf("Throughput = %ld bytes/s\n", throughput);
         }
     }
