@@ -31,8 +31,7 @@ int main(int argc, char **argv)
     int transfer_count = 0;
     size_t mem_size = 1024 * 1024 * 1024;
     int partner_rank = (world_rank + 1) % 2;
-    int *numbers;
-    malloc(numbers,mem_size);
+    int *numbers = malloc(mem_size);
     struct timeval start_time;
     struct timeval end_time;
     for (int i = 1; i < 28; i++)
