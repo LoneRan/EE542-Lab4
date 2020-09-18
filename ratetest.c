@@ -32,6 +32,7 @@ int main(int argc, char **argv)
     size_t mem_size = 1024 * 1024 * 1024;
     int partner_rank = (world_rank + 1) % 2;
     int *numbers = malloc(mem_size);
+    printf("size of MPI_INT is %d", sizeof(MPI_INT));
     struct timeval start_time;
     struct timeval end_time;
     for (int i = 1; i < 28; i++)
