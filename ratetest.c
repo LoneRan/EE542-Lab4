@@ -57,7 +57,7 @@ int main(int argc, char **argv)
                 transfer_count++;
                 MPI_Send(&transfer_count, 1, MPI_INT, partner_rank, 0, MPI_COMM_WORLD);
 
-                MPI_Send(&numbers, transfer_num, MPI_INT, partner_rank, 0, MPI_COMM_WORLD);
+                MPI_Send(numbers, transfer_num, MPI_INT, partner_rank, 0, MPI_COMM_WORLD);
 
                 // printf("node %d sent %d byte(s) to %d\n",
                 //     world_rank, transfer_num, partner_rank);
@@ -67,7 +67,7 @@ int main(int argc, char **argv)
                 MPI_Recv(&transfer_count, 1, MPI_INT, partner_rank, 0, MPI_COMM_WORLD,
                          MPI_STATUS_IGNORE);
 
-                MPI_Recv(&numbers, transfer_num, MPI_INT, partner_rank, 0, MPI_COMM_WORLD,
+                MPI_Recv(numbers, transfer_num, MPI_INT, partner_rank, 0, MPI_COMM_WORLD,
                          MPI_STATUS_IGNORE);
 
                 // printf("node %d received %d byte(s) from %d\n",
