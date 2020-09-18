@@ -11,7 +11,7 @@ double calTime(struct timeval time1, struct timeval time2)
 }
 int main(int argc, char **argv)
 {
-    const int transfer_LIMIT = 1000;
+    const int transfer_LIMIT = 2000;
 
     // Initialize the MPI environment
     MPI_Init(NULL, NULL);
@@ -80,7 +80,7 @@ int main(int argc, char **argv)
         elap = calTime(end_time, start_time);
 
         printf("It takes %ld ms to transfer %d bytes back and forth %d times\n", elap, transfer_num * power, transfer_LIMIT / 2);
-        long throughput = sizeof(MPI_INT) * (long)transfer_num * power * transfer_LIMIT * 500 / elap;
+        long throughput = sizeof(MPI_INT) * (long)transfer_num * power * transfer_LIMIT * 1000 / elap;
         printf("Throughput = %ld byte/s\n", throughput);
         power = power * 2;
     }
