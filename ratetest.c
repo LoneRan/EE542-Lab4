@@ -34,7 +34,7 @@ int main(int argc, char **argv)
 
     struct timeval start_time;
     struct timeval end_time;
-    for (int i = 1; i < 30; i++)
+    for (int i = 1; i < 21; i++)
     {
         transfer_count = 0;
         int transfer_num = 1;
