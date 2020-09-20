@@ -1,0 +1,110 @@
+size of MPI_INT is 8
+size of MPI_INT is 8
+It takes 996 us to transfer 2 MPI_INTs back and forth 1000 times
+Throughput = 30 MB/s
+It takes 998 us to transfer 2 MPI_INTs back and forth 1000 times
+Throughput = 30 MB/s
+It takes 881 us to transfer 4 MPI_INTs back and forth 1000 times
+Throughput = 69 MB/s
+It takes 881 us to transfer 4 MPI_INTs back and forth 1000 times
+Throughput = 69 MB/s
+It takes 947 us to transfer 8 MPI_INTs back and forth 1000 times
+Throughput = 128 MB/s
+It takes 947 us to transfer 8 MPI_INTs back and forth 1000 times
+Throughput = 128 MB/s
+It takes 972 us to transfer 16 MPI_INTs back and forth 1000 times
+Throughput = 251 MB/s
+It takes 971 us to transfer 16 MPI_INTs back and forth 1000 times
+Throughput = 251 MB/s
+It takes 1341 us to transfer 32 MPI_INTs back and forth 1000 times
+Throughput = 364 MB/s
+It takes 1341 us to transfer 32 MPI_INTs back and forth 1000 times
+Throughput = 364 MB/s
+It takes 1407 us to transfer 64 MPI_INTs back and forth 1000 times
+Throughput = 694 MB/s
+It takes 1406 us to transfer 64 MPI_INTs back and forth 1000 times
+Throughput = 694 MB/s
+It takes 1562 us to transfer 128 MPI_INTs back and forth 1000 times
+Throughput = 1250 MB/s
+It takes 1563 us to transfer 128 MPI_INTs back and forth 1000 times
+Throughput = 1249 MB/s
+It takes 1898 us to transfer 256 MPI_INTs back and forth 1000 times
+Throughput = 2058 MB/s
+It takes 1897 us to transfer 256 MPI_INTs back and forth 1000 times
+Throughput = 2059 MB/s
+It takes 2228 us to transfer 512 MPI_INTs back and forth 1000 times
+Throughput = 3506 MB/s
+It takes 2229 us to transfer 512 MPI_INTs back and forth 1000 times
+Throughput = 3504 MB/s
+It takes 3863 us to transfer 1024 MPI_INTs back and forth 1000 times
+Throughput = 4044 MB/s
+It takes 3863 us to transfer 1024 MPI_INTs back and forth 1000 times
+Throughput = 4044 MB/s
+It takes 4971 us to transfer 2048 MPI_INTs back and forth 1000 times
+Throughput = 6286 MB/s
+It takes 4970 us to transfer 2048 MPI_INTs back and forth 1000 times
+Throughput = 6287 MB/s
+It takes 8838 us to transfer 4096 MPI_INTs back and forth 1000 times
+Throughput = 7071 MB/s
+It takes 8836 us to transfer 4096 MPI_INTs back and forth 1000 times
+Throughput = 7073 MB/s
+It takes 13484 us to transfer 8192 MPI_INTs back and forth 1000 times
+Throughput = 9270 MB/s
+It takes 13495 us to transfer 8192 MPI_INTs back and forth 1000 times
+Throughput = 9262 MB/s
+It takes 26687 us to transfer 16384 MPI_INTs back and forth 1000 times
+Throughput = 9367 MB/s
+It takes 26700 us to transfer 16384 MPI_INTs back and forth 1000 times
+Throughput = 9363 MB/s
+It takes 48820 us to transfer 32768 MPI_INTs back and forth 1000 times
+Throughput = 10241 MB/s
+It takes 48819 us to transfer 32768 MPI_INTs back and forth 1000 times
+Throughput = 10241 MB/s
+It takes 120900 us to transfer 65536 MPI_INTs back and forth 1000 times
+Throughput = 8271 MB/s
+It takes 120900 us to transfer 65536 MPI_INTs back and forth 1000 times
+Throughput = 8271 MB/s
+It takes 233648 us to transfer 131072 MPI_INTs back and forth 1000 times
+Throughput = 8559 MB/s
+It takes 233648 us to transfer 131072 MPI_INTs back and forth 1000 times
+Throughput = 8559 MB/s
+It takes 459408 us to transfer 262144 MPI_INTs back and forth 1000 times
+Throughput = 8706 MB/s
+It takes 459409 us to transfer 262144 MPI_INTs back and forth 1000 times
+Throughput = 8706 MB/s
+It takes 916858 us to transfer 524288 MPI_INTs back and forth 1000 times
+Throughput = 8725 MB/s
+It takes 916859 us to transfer 524288 MPI_INTs back and forth 1000 times
+Throughput = 8725 MB/s
+It takes 1847551 us to transfer 1048576 MPI_INTs back and forth 1000 times
+Throughput = 8660 MB/s
+It takes 1847551 us to transfer 1048576 MPI_INTs back and forth 1000 times
+Throughput = 8660 MB/s
+It takes 3723096 us to transfer 2097152 MPI_INTs back and forth 1000 times
+Throughput = 8594 MB/s
+It takes 3723108 us to transfer 2097152 MPI_INTs back and forth 1000 times
+Throughput = 8594 MB/s
+It takes 13024471 us to transfer 4194304 MPI_INTs back and forth 1000 times
+Throughput = 4913 MB/s
+It takes 13024471 us to transfer 4194304 MPI_INTs back and forth 1000 times
+Throughput = 4913 MB/s
+It takes 26297808 us to transfer 8388608 MPI_INTs back and forth 1000 times
+Throughput = 4867 MB/s
+It takes 26297805 us to transfer 8388608 MPI_INTs back and forth 1000 times
+Throughput = 4867 MB/s
+It takes 52534453 us to transfer 16777216 MPI_INTs back and forth 1000 times
+Throughput = 4872 MB/s
+It takes 52534452 us to transfer 16777216 MPI_INTs back and forth 1000 times
+Throughput = 4872 MB/s
+It takes 105235639 us to transfer 33554432 MPI_INTs back and forth 1000 times
+Throughput = 4865 MB/s
+It takes 105235635 us to transfer 33554432 MPI_INTs back and forth 1000 times
+Throughput = 4865 MB/s
+It takes 210317195 us to transfer 67108864 MPI_INTs back and forth 1000 times
+Throughput = 4868 MB/s
+It takes 210317190 us to transfer 67108864 MPI_INTs back and forth 1000 times
+Throughput = 4868 MB/s
+It takes 420967834 us to transfer 134217728 MPI_INTs back and forth 1000 times
+Throughput = 4864 MB/s
+It takes 420967822 us to transfer 134217728 MPI_INTs back and forth 1000 times
+Throughput = 4864 MB/s
