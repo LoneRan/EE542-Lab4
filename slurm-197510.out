@@ -1,0 +1,5 @@
+Hello world from processor d11-21.hpc.usc.edu, rank 0 out of 4 processors
+Hello world from processor d11-22.hpc.usc.edu, rank 1 out of 4 processors
+Hello world from processor d11-24.hpc.usc.edu, rank 3 out of 4 processors
+Hello world from processor d11-23.hpc.usc.edu, rank 2 out of 4 processors
+mpirun -n 4  ./mpi-hello-world/code/mpi_hello_world
